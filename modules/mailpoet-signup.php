@@ -12,8 +12,8 @@
 add_action( 'init', 'wpcf7_add_shortcode_mailpoetsignup', 5 );
 
 function wpcf7_add_shortcode_mailpoetsignup() {
-	if( function_exists('wpcf7_add_shortcode') ) {
-		wpcf7_add_shortcode( array( 'mailpoetsignup', 'mailpoetsignup*' ),
+	if( function_exists('wpcf7_add_form_tag') ) {
+		wpcf7_add_form_tag( array( 'mailpoetsignup', 'mailpoetsignup*' ),
 			'wpcf7_mailpoetsignup_shortcode_handler', true );
 	}
 }
@@ -21,11 +21,11 @@ function wpcf7_add_shortcode_mailpoetsignup() {
 function wpcf7_mailpoetsignup_shortcode_handler( $tag ) {
 
 	// if cf7 is not active, leave
-	if( ! class_exists( 'WPCF7_Shortcode' ) )
+	if( ! class_exists( 'WPCF7_FormTag' ) )
 		return;
 
 	// create a new tag
-	$tag = new WPCF7_Shortcode( $tag );
+	$tag = new WPCF7_FormTag( $tag );
 
 	// if the tag doesn't have a name, return empty handed
 	if( empty( $tag->name ) ) 
